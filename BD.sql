@@ -1,44 +1,8 @@
-/*
-usuario solicita software de arriendo de peliculas en el cual se pide que se realice las siguientes acciones:
-	- mostrar peliculas disponibles por:
-				Nombre.
-				Fecha
-				Genero
-	- Eliminar peliculas deseadas
-	- actualizar peliculas
-	- cantidad de peliculas disponibles 
-	- en caso de que pelicula no este disponible mostrar fecha en que estara disponible
-	- Formato de pelicula disponible
-*/
 
-/* 
-	--Genero de peliculas--
-	
-	- Accion 
-	- Ciencia ficcion
-	- Animacion
-	- Artes marciales
-	- comedia
-	- Romance
-	- Terror
-	- Aventura
-	- Deporte
-	- Fantasia
-	- Series TV
-	- Triller
 
-*/
-/* 
-	tipos de formatos
-	
-	SCR (Screnner - DVDscr - BRscr - BDscr)
-	VHS-Screener
-	
-*/
-
-DROP DATABASE IF EXISTS descarga_peliculas;
-CREATE DATABASE descarga_peliculas;
-USE descarga_peliculas;
+DROP DATABASE IF EXISTS Arriendo_peliculas;
+CREATE DATABASE Arriendo_peliculas;
+USE Arriendo_peliculas;
 
 CREATE TABLE categoria(
 	id INT AUTO_INCREMENT,
@@ -65,7 +29,7 @@ INSERT INTO categoria VALUES(NULL, 'Accion'),
 CREATE TABLE formato(
 	id INT AUTO_INCREMENT,
 	nombre VARCHAR (100),
-	comentario TEXT,
+	descripcion TEXT,
 	
 	PRIMARY KEY (id),
 	UNIQUE (nombre)
@@ -92,7 +56,6 @@ CREATE TABLE cuenta (
 );
 
 INSERT INTO cuenta VALUES (NULL, 'mrT', 'marc.sc@outlook.es', SHA2('63568', 0)),
-						   (NULL, 'Yonwite001', 'yonwhite.001@gmail.com', SHA2('84236', 0)),
 						   (NULL, 'slimeAzuPro', 'slime@hotmail.com', SHA2('14127', 0)),
 						   (null,'hola', 'hola@gmail.com', SHA2('hola',0));
 
@@ -130,8 +93,8 @@ CREATE TABLE pelicula (
 
 INSERT INTO pelicula VALUES (NULL, 'El jefe de la mafia', '2018', '1920x808', 'Español Latino', '3.75 GB', 'Biopic del famoso mafioso estadounidense John Gotti (1940-2002), jefe de la familia Gambino, una de las más importantes del crimen organizado en la Norteamérica del siglo XX.'),
 							(NULL, 'El legado', '2018', '1920x1080', 'Español Latino', '3.96 GB ', 'Perseguidos por un criminal vengativo (James Franco) y una banda de soldados sobrenaturales,​ un exconvicto recién liberado (Jack Reynor) y su hermano adolescente adoptado (Myles Truitt) se ven obligados a escapar con un arma de origen misterioso que es su única protección.'),
-							(NULL, 'Star Wars: Episodio VI - El Retorno del jedi', '1983', '1920x1080', 'Inglés AC', '4.71 GB', 'Para ir a Tatooine y liberar a Han Solo, Luke Skywalker y la princesa Leia deben infiltrarse en la peligrosa guarida de Jabba the Hutt, el gángster más temido de la galaxia. Una vez reunidos, el equipo recluta a tribus de Ewoks para combatir a las fuerzas imperiales en los bosques de la luna de Endor. Mientras tanto, el Emperador y Darth Vader conspiran para atraer a Luke al lado oscuro, pero el joven está decidido a reavivar el espíritu del Jedi en su padre. La guerra civil galáctica termina con un último enfrentamiento entre las fuerzas rebeldes unificadas y una segunda Estrella de la Muerte, indefensa e incompleta, en una batalla que decidirá el destino de la galaxia.');
-
+							(NULL, 'Star Wars: Episodio VI - El Retorno del jedi', '1983', '1920x1080', 'Inglés AC', '4.71 GB', 'Para ir a Tatooine y liberar a Han Solo, Luke Skywalker y la princesa Leia deben infiltrarse en la peligrosa guarida de Jabba the Hutt, el gángster más temido de la galaxia. Una vez reunidos, el equipo recluta a tribus de Ewoks para combatir a las fuerzas imperiales en los bosques de la luna de Endor. Mientras tanto, el Emperador y Darth Vader conspiran para atraer a Luke al lado oscuro, pero el joven está decidido a reavivar el espíritu del Jedi en su padre. La guerra civil galáctica termina con un último enfrentamiento entre las fuerzas rebeldes unificadas y una segunda Estrella de la Muerte, indefensa e incompleta, en una batalla que decidirá el destino de la galaxia.'),
+                            (NULL, 'Scarface', '1983', '1920x1080', 'Español', '2 GB', 'Un imigrande cubano de las carceles de fidel castro provoca un camino de destruccion en su ascenso en el mundo de las drogras de miami');
 
 CREATE TABLE pelicula_servidor (
 	id INT AUTO_INCREMENT,
