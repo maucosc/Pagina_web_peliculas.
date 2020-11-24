@@ -15,7 +15,41 @@ def espacios():
         print("")
 
 def borrar():
-    pass
+    while(True):
+        print("Eliminar datos")
+        print("")
+        print("A) Usuario")
+        print("B) Pelicula")
+
+        op = input("opcion:")
+        op = op.strip().lower()
+
+        if(op == "a"):
+            nombre = input("introduzca el nombre del usuario que desea eliminar: ")
+            passwd = input("Ingrese la contraseña como medidad de seguridad: ")
+            cursor = db.cursor()
+            rs = cursor.fetchall()
+            if(rs[0][0] == 0):
+                print("                              ")
+                print("Usuario o contraseña invalidos")
+                print("                              ")
+            else:
+                cursor.execute("DELETE FORM cuenta WHERE nickname = '{}';".format(nombre))
+                print("")
+                print("Eliminacion exitosa")
+                IniciarSesion()
+        elif(op == "b"):
+            nombre = input("Introdusca el nombre de la pelicula: ")
+            fecha = input("ingrese fecha de pelicula: ")
+            cursor = db.cursor()
+            cursor.execute("SELECT COUNT(*) pelicula WHERE nombre = '{}' AND fecha '{}';".format(nombre,fecha))
+            rs = cursor.fetchall()
+            if (rs[0][0] == 0):
+                print("                              ")
+                print("Usuario o contraseña invalidos")
+                print("                              ")
+            else:
+                cursor.execute("DELETE FORM pelicula WHERE nombre = '{}';".format(nombre, fecha))
 
 def IniciarSesion():
     while(True):
