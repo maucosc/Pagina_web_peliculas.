@@ -26,9 +26,10 @@ def IniciarSesion():
         rs = cursor.fetchall()
 
         if (rs[0][0] == 0):
-            print("\033[1;31m<<<>>>")
-            print("\033[1;30mUsuario o contraseña incorectas")
-            print("\033[1;31m<<<>>>")
+            espacios()
+            print("                                ")
+            print("Usuario o contraseña incorrectas")
+            print("                                ")
 
         else:
             espacios()
@@ -74,7 +75,30 @@ def CrearCuenta():
     db.commit()
 
 def visualizar():
-    pass
+    while (True):
+        nombre = input("Buscar pelicula")
+        cursor = db.cursor()
+        cursor.execute("SELECT pelicula.id AS 'N°',"
+                       "pelicula.nombre,"
+                       "pelicula.fecha,"
+                       "pelicula.resolucion,"
+                       "pelicula.idioma,"
+                       "pelicula.tamano AS 'Tamaño',"
+                       "categoria.nombre AS 'Categoria'"
+                       "pelicula.sinopsis"
+                       "FROM"
+                       "categoria"
+                       "INNERT JOIN categoria_pelicula ON categoria_pelicula.id_categoria_fk = categoria.id"
+                       "INNERT JOIN pelicula ON categoria_pelicula.id_pelicula_fk = pelicula.id"
+                       "WHERE pelicula.nombre LIKE '%{}%';".format(nombre))
+        rs = cursor.fetchall()
+        if(rs != rs):
+            print("Pelicula invalida")
+            print("")
+            print("")
+        else:
+            print(rs)
+            break
 
 def MenuSesion():
     print("")

@@ -83,7 +83,7 @@ CREATE TABLE pelicula (
 	resolucion VARCHAR (100),
 	idioma VARCHAR (100),
 	tamano VARCHAR (50),
-	SINOPSIS TEXT,
+	sinopsis TEXT,
 	
 	PRIMARY KEY (id),
 	UNIQUE (tamano)
@@ -137,3 +137,11 @@ INSERT INTO categoria_pelicula VALUES (NULL, 2, 1),
 									  (NULL, 3, 2),
 									  (NULL, 1, 1),
 									  (NULL, 2, 2);
+
+
+
+
+
+-- procedimiento de almacenado
+
+CREATE PROCEDURE 
