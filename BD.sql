@@ -1,5 +1,3 @@
-
-
 DROP DATABASE IF EXISTS Arriendo_peliculas;
 CREATE DATABASE Arriendo_peliculas;
 USE Arriendo_peliculas;
@@ -51,13 +49,13 @@ CREATE TABLE cuenta (
 	id INT AUTO_INCREMENT,
 	nickname VARCHAR (100),
 	email VARCHAR (100),
-	passwd VARCHAR (100),
+	passwd VARCHAR (50),
 	PRIMARY KEY (id)
 );
 
 INSERT INTO cuenta VALUES (NULL, 'mrT', 'marc.sc@outlook.es', SHA2('63568', 0)),
-						   (NULL, 'slimeAzuPro', 'slime@hotmail.com', SHA2('14127', 0)),
-						   (null,'hola', 'hola@gmail.com', SHA2('hola',0));
+						  (NULL, 'juan', 'juan@hotmail.com', SHA2('31231', 0)),
+						  (null,'hola', 'hola@gmail.com', SHA2('hola',0));
 
 						   
 CREATE TABLE servidor (

@@ -20,15 +20,15 @@ def borrar():
 def IniciarSesion():
     while(True):
         nickname = input("Ingrese su nombre de usuario: ")
-        passwrd = input("Ingrese su contraseña: ")
+        passwd = input("Ingrese su contraseña: ")
         cursor = db.cursor()
-        cursor.execute("SELECT * FROM cuenta WHERE nickname = '{}' AND passwd = SHA2('{}',0)".format(nickname,passwrd).lower().strip())
+        cursor.execute("SELECT COUNT(*) FROM cuenta WHERE nickname = '{}' AND passwd = SHA2('{}',0)".format(nickname,passwd).lower().strip())
         rs = cursor.fetchall()
 
         if (rs[0][0] == 0):
-            print("")
-            print("")
-            print("")
+            print("\033[1;31m<<<>>>")
+            print("\033[1;30mUsuario o contraseña incorectas")
+            print("\033[1;31m<<<>>>")
 
         else:
             espacios()
@@ -44,9 +44,7 @@ def IniciarSesion():
                 op = input("Opcion: ")
                 op = op.strip().lower()
 
-                if (op == 'd'
-                        or op == 'salir'
-                ):
+                if (op == 'd' or op == 'salir'):
                     print("             ")
                     print("Vuelva Pronto")
                     print("             ")
@@ -59,18 +57,26 @@ def IniciarSesion():
                     visualizar()
                 elif (op != "a" or op != "b" or op != "c"):
                     espacios()
+
+            espacios()
+            break
 def CrearCuenta():
 
-    nickname = input("\033[1;30m Ingrese el nombre de usuario: ")
-    email = input("Ingrese su Correo: ")
-    passwrd = input("Ingrese su contraseña: ")
     cursor = db.cursor()
-    cursor.execute("INSERT INTO cuenta VALUES('NULL','{}','{}',SHA2('{}',0);".format(nickname, email, passwrd))
+    nickname = input("Ingrese el nombre de usuario: ")
+    email = input("Ingrese su Correo: ")
+    passwd = input("Ingrese su contraseña: ")
+    cursor.execute("INSERT INTO cuenta (nickname,email,passwd) VALUES ('{}','{}',SHA2('{}',0));".format(nickname, email, passwd))
+    print("                           ")
+    print("Usuario creado exitosamente")
+    print("                           ")
+    espacios()
+    db.commit()
 
 def visualizar():
     pass
 
-def Menu():
+def MenuSesion():
     print("")
     while(True):
         print("A) Iniciar sesion")
@@ -80,7 +86,8 @@ def Menu():
         op1 = op1.strip().lower()
         if(op1 == "c"):
             espacios()
-            print("adios")
+            print("Adios Vuelva pronto")
+            print("                   ")
             break
         elif(op1 == "a"):
             IniciarSesion()
@@ -91,4 +98,4 @@ def Menu():
         elif (op1 != "a" or op1 != "b" or op1 != "c"):
             espacios()
 
-Menu()
+MenuSesion()
