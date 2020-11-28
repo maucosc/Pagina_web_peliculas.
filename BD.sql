@@ -50,7 +50,9 @@ CREATE TABLE cuenta (
 	nickname VARCHAR (100),
 	email VARCHAR (100),
 	passwd VARCHAR (50),
-	PRIMARY KEY (id)
+	PRIMARY KEY (id),
+	UNIQUE (nickname)
+	UNIQUE (email)
 );
 
 INSERT INTO cuenta VALUES (NULL, 'mrT', 'marc.sc@outlook.es', SHA2('63568', 0)),
