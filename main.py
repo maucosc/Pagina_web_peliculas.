@@ -1,26 +1,23 @@
-from CRUD import *
+from crud import *
 from conexion import *
 
 
 def espacios():
 
-    l = 0
-    while (l <= 5):
-        l += 1
+    linea = 0
+    while (linea <= 5):
+        linea += 1
         print("")
 
-def CrearCuenta():
+def crearCuanta():
 
     cursor = db.cursor()
     nickname = input("Ingrese el nombre de usuario: ")
     email = input("Ingrese su Correo: ")
     passwd = input("Ingrese su contraseña: ")
-    cursor.execute("INSERT INTO cuenta (nickname,email,passwd) VALUES ('{}','{}',SHA2('{}',0));".format(nickname, email, passwd))
-    print("                           ")
-    print("Usuario creado exitosamente")
-    print("                           ")
-    espacios()
+    cursor.execute("INSERT INTO cuenta (nickname,email,passwd) VALUES ('{}','{}',SHA2('{}',0));".format(nickname,email,passwd))
     db.commit()
+
 
 def insertarPelicula():
     pass
@@ -49,7 +46,9 @@ def visualizar():
             print("")
         else:
             print(rs)
-            break
+
+        for x in rs:
+            print(x)
 
 def actualizar():
     pass
@@ -74,7 +73,7 @@ def borrar():
                 print("Usuario o contraseña invalidos")
                 print("                              ")
             else:
-                cursor.execute("DELETE FORM cuenta WHERE nickname = '{}';".format(nombre,passwd))
+                cursor.execute("DELETE FORM cuenta WHERE nickname = '{}'".format(nombre,passwd))
                 print("")
                 print("Eliminacion exitosa")
                 IniciarSesion()
@@ -82,14 +81,14 @@ def borrar():
             nombre = input("Introdusca el nombre de la pelicula: ")
             fecha = input("ingrese fecha de pelicula: ")
             cursor = db.cursor()
-            cursor.execute("SELECT COUNT(*) pelicula WHERE nombre = '{}' AND fecha '{}';".format(nombre,fecha))
+            cursor.execute("SELECT COUNT(*) pelicula WHERE nombre = '{}' AND fecha '{}'".format(nombre,fecha))
             rs = cursor.fetchall()
             if (rs[0][0] == 0):
                 print("                              ")
                 print("Usuario o contraseña invalidos")
                 print("                              ")
             else:
-                cursor.execute("DELETE FORM pelicula WHERE nombre = '{}';".format(nombre, fecha))
+                cursor.execute("DELETE FORM pelicula WHERE nombre = '{}'".format(nombre, fecha))
 
 def IniciarSesion():
     while(True):
@@ -99,12 +98,10 @@ def IniciarSesion():
         cursor.execute("SELECT COUNT(*) FROM cuenta WHERE nickname = '{}' AND passwd = SHA2('{}',0)".format(nickname,passwd))
         rs = cursor.fetchall()
 
-        if (rs[0][0] == 0):
-            espacios()
-            print("                                ")
+        if(rs[0][0] == 0):
+            print("--------------------------------")
             print("Usuario o contraseña incorrectas")
-            print("                                ")
-
+            print("--------------------------------")
         else:
             espacios()
             while(True):
@@ -116,39 +113,30 @@ def IniciarSesion():
                 print("b) Borrar")
                 print("c) Visualizar")
                 print("d) Salir")
-                op = input("Opcion: ")
-                op = op.strip().lower()
+                op2 = input("Opcion: ")
+                op2 = op2.strip().lower()
 
-                if (op == 'd' or op == 'salir'):
-                    print("             ")
+                if (op2 == 'd' or op2 == 'salir'):
+                    print("-------------")
                     print("Vuelva Pronto")
-                    print("             ")
-                    break
-                elif (op == "A"):
+                    print("-------------")
+                    MenuSesion()
+                elif (op2 == "A"):
                     actualizar()
-                elif (op == "B"):
+                elif (op2 == "B"):
                     borrar()
-                elif (op == "C"):
+                elif (op2 == "C"):
                     visualizar()
-                elif (op != "a" or op != "b" or op != "c"):
+                elif (op2 != "a" or op2 != "b" or op2 != "c"):
                     espacios()
 
-            espacios()
-            break
-
-def pruebaxXxXx():
-    cursor = db.cursor()
-    cursor.execute("SELECT * FROM pelicula")
-    rs = cursor.fetchall()
-    db.commit()
-    for x in rs:
-        print(x)
-
-
-
-def MenuSesion():
+def MenuSesion():  # completo
     print("")
     while(True):
+        print("          ")
+        print("Bienvenido")
+        print("          ")
+
         print("A) Iniciar sesion")
         print("B) Crear Usuario")
         print("C) Salir")
@@ -157,22 +145,21 @@ def MenuSesion():
 
         if(op1 == "c" or op1 == "Salir"):
             espacios()
+            print("-------------------")
             print("Adios Vuelva pronto")
-            print("                   ")
-            break
+            print("-------------------")
+            exit()
         elif(op1 == "a"):
             IniciarSesion()
 
         elif(op1 == "b"):
-            CrearCuenta()
-
-        elif(op1 == "c"):
-            print("")
-            print("adios")
+            crearCuanta()
 
         elif (op1 != "a" or op1 != "b" or op1 != "c"):
+            print("                   ")
+            print("-------------------")
             print("opcion invalida")
+            print("-------------------")
             espacios()
-
 
 MenuSesion()

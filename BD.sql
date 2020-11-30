@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS Arriendo_peliculas;
-CREATE DATABASE Arriendo_peliculas;
-USE Arriendo_peliculas;
+DROP DATABASE IF EXISTS descargar_peliculas;
+CREATE DATABASE descargar_peliculas;
+USE descargar_peliculas;
 
 CREATE TABLE categoria(
 	id INT AUTO_INCREMENT,
@@ -43,15 +43,17 @@ INSERT INTO formato VALUES (NULL, 'SCR', 'Obtebido de un DVD o de Blu-ray DE USO
 						   (NULL, 'HDTV', 'Son capturas realizadas desde emisiones digitales de Alta Definición.'),
 						   (NULL, 'HD', 'son señales digitales que ofrecen una calidad superior a la ofrecida por el SD o ED.'),
 						   (NULL, '720p y 1080p', 'hacen referencia al número de líneas verticales que muestra cada fotograma.');
-						   
-						   
+
+
+
+
 CREATE TABLE cuenta (
 	id INT AUTO_INCREMENT,
-	nickname VARCHAR (100),
-	email VARCHAR (100),
-	passwd VARCHAR (50),
+	nickname VARCHAR (50),
+	email VARCHAR (50),
+	passwd VARCHAR (10),
 	PRIMARY KEY (id),
-	UNIQUE (nickname)
+	UNIQUE (nickname),
 	UNIQUE (email)
 );
 
@@ -81,14 +83,14 @@ INSERT INTO servidor VALUES (NULL, 'Usercloud', 1),
 CREATE TABLE pelicula (
 	id INT AUTO_INCREMENT,
 	nombre VARCHAR (100),
-	fecha YEAR, 
-	resolucion VARCHAR (100),
-	idioma VARCHAR (100),
-	tamano VARCHAR (50),
+	fecha DATE, 
+	resolucion VARCHAR (15),
+	idioma VARCHAR (50),
+	tamano VARCHAR (10),
 	sinopsis TEXT,
 	
 	PRIMARY KEY (id),
-	UNIQUE (tamano)
+	UNIQUE (sinopsis)
 );
 
 INSERT INTO pelicula VALUES (NULL, 'El jefe de la mafia', '2018', '1920x808', 'Español Latino', '3.75 GB', 'Biopic del famoso mafioso estadounidense John Gotti (1940-2002), jefe de la familia Gambino, una de las más importantes del crimen organizado en la Norteamérica del siglo XX.'),
@@ -146,4 +148,28 @@ INSERT INTO categoria_pelicula VALUES (NULL, 2, 1),
 
 -- procedimiento de almacenado
 
-CREATE PROCEDURE 
+DELIMITER //
+
+CREATE PROCEDURE agregar_pelicula(IN _nombre VARCHAR(30), IN _fecha DATE, IN _resolucion VARCHAR(15), IN _idioma VARCHAR(50), IN _tamano VARCHAR(10), IN _sinopsis TEXT)
+
+BEGIN
+	DECLARE condicion INT;
+
+	SET condicion = (SELECT COUNT(*)
+	FROM pelicula
+	WHERE nombre = _nombre);
+
+		IF condicion = 0 THEN
+
+		INSERT INTO pelicula VALUES(NULL, _nombre, _fecha, _resolucion, _idioma, _tamano, _sinopsis);
+		SELECT 'Pelicula Ingresada' AS "Mensaje";
+
+		ELSE
+			SELECT 'no se a ingresado la pelicula' AS "Mensaje";
+			END IF
+
+	END //
+
+
+DELIMITER ;
+
