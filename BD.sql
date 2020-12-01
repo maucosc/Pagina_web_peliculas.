@@ -52,9 +52,7 @@ CREATE TABLE cuenta (
 	nickname VARCHAR (50),
 	email VARCHAR (50),
 	passwd VARCHAR (10),
-	PRIMARY KEY (id),
-	UNIQUE (nickname),
-	UNIQUE (email)
+	PRIMARY KEY (id)
 );
 
 INSERT INTO cuenta VALUES (NULL, 'mrT', 'marc.sc@outlook.es', SHA2('63568', 0)),
@@ -83,7 +81,6 @@ INSERT INTO servidor VALUES (NULL, 'Usercloud', 1),
 CREATE TABLE pelicula (
 	id INT AUTO_INCREMENT,
 	nombre VARCHAR (100),
-	fecha DATE, 
 	resolucion VARCHAR (15),
 	idioma VARCHAR (50),
 	tamano VARCHAR (10),
@@ -93,10 +90,10 @@ CREATE TABLE pelicula (
 	UNIQUE (sinopsis)
 );
 
-INSERT INTO pelicula VALUES (NULL, 'El jefe de la mafia', '2018', '1920x808', 'Español Latino', '3.75 GB', 'Biopic del famoso mafioso estadounidense John Gotti (1940-2002), jefe de la familia Gambino, una de las más importantes del crimen organizado en la Norteamérica del siglo XX.'),
-							(NULL, 'El legado', '2018', '1920x1080', 'Español Latino', '3.96 GB ', 'Perseguidos por un criminal vengativo (James Franco) y una banda de soldados sobrenaturales,​ un exconvicto recién liberado (Jack Reynor) y su hermano adolescente adoptado (Myles Truitt) se ven obligados a escapar con un arma de origen misterioso que es su única protección.'),
-							(NULL, 'Star Wars: Episodio VI - El Retorno del jedi', '1983', '1920x1080', 'Inglés AC', '4.71 GB', 'Para ir a Tatooine y liberar a Han Solo, Luke Skywalker y la princesa Leia deben infiltrarse en la peligrosa guarida de Jabba the Hutt, el gángster más temido de la galaxia. Una vez reunidos, el equipo recluta a tribus de Ewoks para combatir a las fuerzas imperiales en los bosques de la luna de Endor. Mientras tanto, el Emperador y Darth Vader conspiran para atraer a Luke al lado oscuro, pero el joven está decidido a reavivar el espíritu del Jedi en su padre. La guerra civil galáctica termina con un último enfrentamiento entre las fuerzas rebeldes unificadas y una segunda Estrella de la Muerte, indefensa e incompleta, en una batalla que decidirá el destino de la galaxia.'),
-                            (NULL, 'Scarface', '1983', '1920x1080', 'Español', '2 GB', 'Un imigrande cubano de las carceles de fidel castro provoca un camino de destruccion en su ascenso en el mundo de las drogras de miami');
+INSERT INTO pelicula VALUES (NULL, 'El jefe de la mafia', '1920x808', 'Español Latino', '3.75 GB', 'Biopic del famoso mafioso estadounidense John Gotti (1940-2002), jefe de la familia Gambino, una de las más importantes del crimen organizado en la Norteamérica del siglo XX.'),
+							(NULL, 'El legado', '1920x1080', 'Español Latino', '3.96 GB ', 'Perseguidos por un criminal vengativo (James Franco) y una banda de soldados sobrenaturales,​ un exconvicto recién liberado (Jack Reynor) y su hermano adolescente adoptado (Myles Truitt) se ven obligados a escapar con un arma de origen misterioso que es su única protección.'),
+							(NULL, 'Star Wars: Episodio VI - El Retorno del jedi', '1920x1080', 'Inglés AC', '4.71 GB', 'Para ir a Tatooine y liberar a Han Solo, Luke Skywalker y la princesa Leia deben infiltrarse en la peligrosa guarida de Jabba the Hutt, el gángster más temido de la galaxia. Una vez reunidos, el equipo recluta a tribus de Ewoks para combatir a las fuerzas imperiales en los bosques de la luna de Endor. Mientras tanto, el Emperador y Darth Vader conspiran para atraer a Luke al lado oscuro, pero el joven está decidido a reavivar el espíritu del Jedi en su padre. La guerra civil galáctica termina con un último enfrentamiento entre las fuerzas rebeldes unificadas y una segunda Estrella de la Muerte, indefensa e incompleta, en una batalla que decidirá el destino de la galaxia.'),
+                            (NULL, 'Scarface', '1920x1080', 'Español', '2 GB', 'Un imigrande cubano de las carceles de fidel castro provoca un camino de destruccion en su ascenso en el mundo de las drogras de miami');
 
 CREATE TABLE pelicula_servidor (
 	id INT AUTO_INCREMENT,
@@ -172,4 +169,3 @@ BEGIN
 
 
 DELIMITER ;
-
