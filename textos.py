@@ -18,7 +18,8 @@ def text_menu_visualizar_text():
     print("A) Usuario")
     print("B) Pelicula por nombre")
     print("C) Todas las peliculas")
-    print("D) Salir")
+    print("D) Servidor de pelicula")
+    print("E) Salir")
 
 def text_menu_actualizar():
     print("----------------------")

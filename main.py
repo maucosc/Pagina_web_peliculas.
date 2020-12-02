@@ -34,9 +34,10 @@ def visualizar():
         op = input("Opcion: ")
         op = op.strip().lower()
 
-        if op == "a" or op == "b" or op == "c" or op == "d":
+        if op == "a" or op == "b" or op == "c" or \
+                op == "d" or op == "e":
 
-            if op == "d":
+            if op == "e":
                 text_regresar()
                 break
             elif op == "a":
@@ -46,8 +47,9 @@ def visualizar():
 
             elif op == "c":
                 visualizar_peliculas_disponibles()
-            break
 
+            elif op == "d":
+                visualizar_pelicula_servidor()
         else:
             text_ingrese_op_valida()
 
@@ -112,7 +114,7 @@ def iniciar_sesion(nickname, passwd):
                 op = op.strip().lower()
 
                 if op == "e" or op == "salir":
-                    text_mensaje_despedida()
+                    text_regresar()
                     menu_sesion()
 
                 elif op == "a":

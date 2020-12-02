@@ -59,3 +59,21 @@ def visualizar_usuario():
     db.commit()
     for x in rs:
         print(x)
+
+def visualizar_pelicula_servidor():
+    cursor = db.cursor()
+    sql = "SELECT pelicula.nombre,  \
+          servidor.nombre AS 'Servidor', \
+          pelicula_servidor.url \
+          FROM \
+          pelicula_servidor \
+          INNER JOIN pelicula ON pelicula_servidor.id_pelicula_fk = pelicula.id \
+          INNER JOIN servidor ON pelicula_servidor.id_pelicula_fk = servidor.id \
+          GROUP BY pelicula.nombre;"
+    cursor.execute(sql)
+    rs = cursor.fetchall()
+
+    text_espacio()
+    for x in rs:
+        print(x)
+

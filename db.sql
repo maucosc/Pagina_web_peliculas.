@@ -141,11 +141,22 @@ SELECT pelicula.id AS 'N',
 	pelicula.idioma, 
 	pelicula.tamano, 
 	categoria.nombre AS 'Categoria'
-	FROM categoria_pelicula
-	INNER JOIN categoria ON categoria_pelicula.id_categoria_fk = categoria.id
-	INNER JOIN pelicula ON categoria_pelicula.id_pelicula_fk = pelicula.id;
+FROM categoria_pelicula
+INNER JOIN categoria ON categoria_pelicula.id_categoria_fk = categoria.id
+INNER JOIN pelicula ON categoria_pelicula.id_pelicula_fk = pelicula.id;
+
+SELECT pelicula.nombre, 
+	servidor.nombre, AS 'Servidor'
+	pelicula_servidor.url
+FROM
+	pelicula_servidor
+INNER JOIN pelicula ON pelicula_servidor.id_pelicula_fk = pelicula.id
+INNER JOIN servidor ON pelicula_servidor.id_pelicula_fk = servidor.id;
+
+
 
 -- Update_Usuario
 
 UPDATE cuenta SET nickname = "mauco" WHERE nickname = 'hola';
+
 
