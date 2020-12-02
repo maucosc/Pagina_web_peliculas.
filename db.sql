@@ -85,17 +85,6 @@ CREATE TABLE pelicula (
 	PRIMARY KEY (id)
 );
 
-SELECT pelicula.id AS 'N', 
-	pelicula.nombre, 
-	pelicula.resolucion, 
-	pelicula.idioma, 
-	pelicula.tamano, 
-	categoria.nombre AS 'Categoria'
-	FROM categoria_pelicula
-	INNER JOIN categoria ON categoria_pelicula.id_categoria_fk = categoria.id
-	INNER JOIN pelicula ON categoria_pelicula.id_pelicula_fk = pelicula.id
-	WHERE pelicula.nombre = "El legado";
-
 INSERT INTO pelicula VALUES(NULL, 'el jefe de la mafia', '1920x808', 'Español Latino', '3.75 GB', 'Biopic del famoso mafioso estadounidense John Gotti (1940-2002), jefe de la familia Gambino, una de las más importantes del crimen organizado en la Norteamérica del siglo XX.'),
 							(NULL, 'el legado', '1920x1080', 'Español Latino', '3.96 GB ', 'Perseguidos por un criminal vengativo (James Franco) y una banda de soldados sobrenaturales,​ un exconvicto recién liberado (Jack Reynor) y su hermano adolescente adoptado (Myles Truitt) se ven obligados a escapar con un arma de origen misterioso que es su única protección.'),
 							(NULL, 'star Wars: Episodio VI - El Retorno del jedi', '1920x1080', 'Inglés AC', '4.71 GB', 'Para ir a Tatooine y liberar a Han Solo, Luke Skywalker y la princesa Leia deben infiltrarse en la peligrosa guarida de Jabba the Hutt, el gángster más temido de la galaxia. Una vez reunidos, el equipo recluta a tribus de Ewoks para combatir a las fuerzas imperiales en los bosques de la luna de Endor. Mientras tanto, el Emperador y Darth Vader conspiran para atraer a Luke al lado oscuro, pero el joven está decidido a reavivar el espíritu del Jedi en su padre. La guerra civil galáctica termina con un último enfrentamiento entre las fuerzas rebeldes unificadas y una segunda Estrella de la Muerte, indefensa e incompleta, en una batalla que decidirá el destino de la galaxia.'),
@@ -179,3 +168,21 @@ DELIMITER ;
 DILIMITER //
 
 CREATE PROCEDURE borrar
+
+
+-- inner_join_Visualizar
+
+SELECT pelicula.id AS 'N', 
+	pelicula.nombre, 
+	pelicula.resolucion, 
+	pelicula.idioma, 
+	pelicula.tamano, 
+	categoria.nombre AS 'Categoria'
+	FROM categoria_pelicula
+	INNER JOIN categoria ON categoria_pelicula.id_categoria_fk = categoria.id
+	INNER JOIN pelicula ON categoria_pelicula.id_pelicula_fk = pelicula.id
+	WHERE pelicula.nombre LIKE "%el%";
+
+-- Update_Usuario
+
+UPDATE cuenta SET nickname = "mauco" WHERE nickname = 'hola';

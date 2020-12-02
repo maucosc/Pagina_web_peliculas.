@@ -24,10 +24,29 @@ def text_menu_actualizar():
     print("")
     print("A) Usuario")
     print("B) Pelicula")
-    print("C) Salir")
+    print("C) Regresar")
 
+def text_menu_actualizar_usuario():
+    print("")
+    print("Actualizar datos de usuario")
+    print("")
+    print("A) Email de usuario")
+    print("B) nickname de usuario")
+    print("C) Regresar")
+
+def text_menu_agregar():
+    print("")
+    print("Agregar Informacion")
+    print("")
+    print("A) Pelicula")
+    print("B) Servidor")
+    print("C) Formato")
+    print("D) Salir")
 
 def text_mensaje_bienvenida():
+    print("")
+    print("")
+    print("")
     print("----------")
     print("Bienvenido")
     print("----------")
@@ -55,6 +74,11 @@ def text_ingrese_op_valida():
     print("-------------------------")
     print("Ingrese una opcion valida")
     print("-------------------------")
+
+def text_modificacion_exitosa():
+    print("--------------------")
+    print("Modificacion exitosa")
+    print("--------------------")
 
 
 def text_usuario_creado():

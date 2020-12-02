@@ -1,38 +1,38 @@
 from conexion import *
+from textos import text_menu_actualizar_usuario, text_regresar, text_ingrese_op_valida, modificacion_exitosa
 
 
 def actualizar_usuario():
     while True:
         cursor = db.cursor()
-        
-        print("Actualizar datos de usuario")
-        print("")
-        print("A) Email de usuario")
-        print("B) nickname de usuario")
-        print("C) Regresar")
+        text_menu_actualizar_usuario()
 
         op = input("Opcion: ")
         op = op.strip().lower()
 
-        if op == "C":
-            print("")
-            print("----------")
-            print("Regresando")
-            print("----------")
-            print("")
+        if op == "c":
+            text_regresar()
 
-        elif op == "A":
+        elif op == "a":
             email = input("Ingrese el email que desea modificar: ")
             email_new = input("Ingrese el nuevo email: ")
 
-            cursor.execute("UPDATE cuenta SET email = '{}' WHERE email = '{}';".format(email_new, email).strip().lower())
-        elif op == "B":
-            usuario = input("Ingrese el nombre de usuario que desea modificar: ")
+            sql = "UPDATE cuenta SET email = '{}' WHERE email = '{}'".format(email_new, email)
+            cursor.execute(sql)
+            modificacion_exitosa()
+
+        elif op == "b":
+
+            usuario = input("Ingrese el nombre del usuario que desea modificar: ")
             usuario_new = input("Ingrese el nuevo nombre de usuario: ")
 
-            cursor.execute("UPDATE cuenta SET nickname = '{}' WHERE nickname = '{}';".format(usuario_new, usuario).strip().lower())
+            sql = "UPDATE cuenta SET nickname = '{}' WHERE nickname = '{}'".format(usuario_new, usuario)
+            cursor.execute(sql)
+            modificacion_exitosa()
+
         else:
-            print("Ingrese una opcion valida")
+
+            text_ingrese_op_valida()
             actualizar_usuario()
 
 

@@ -1,3 +1,4 @@
+from insertar import *
 from textos import *
 from visualizar import *
 from actualizar import *
@@ -5,28 +6,23 @@ from actualizar import *
 
 def crear():
     while True:
-        print("")
-        print("Agregar Informacion")
-        print("")
-        print("A) ")
-        print("B) ")
-        print("C) ")
-        print("D) Salir")
+        text_menu_agregar()
 
         op = input("Opcion: ")
         op = op.strip().lower()
 
-        if op == "c":
-            print("")
-            print("----------")
-            print("Regresando")
-            print("----------")
+        if op == "d":
+            text_regresar()
+            menu_sesion()
 
         elif op == "a":
-            pass
+            ingresar_pelicula()
 
         elif op == "b":
-            pass
+            ingresar_servidor_pelicula()
+
+        elif op == "c":
+            ingresar_formato_pelicula()
 
         else:
             text_ingrese_op_valida()
@@ -45,6 +41,7 @@ def visualizar():
 
             if op == "c":
                 text_regresar()
+                menu_sesion()
 
             elif op == "a":
                 visualizar_pelicula()
@@ -55,7 +52,6 @@ def visualizar():
 
         else:
             text_ingrese_op_valida()
-
 
 def actualizar():
 
@@ -68,6 +64,7 @@ def actualizar():
 
         if op == "c":
             text_regresar()
+            menu_sesion()
 
         elif op == "a":
             actualizar_usuario()
@@ -109,8 +106,10 @@ def iniciar_sesion(nickname, passwd):
                     visualizar()
 
                 elif op == "c":
-                    eliminar()
+                    actualizar()
 
+                elif op == "d":
+                    eliminar()
                 else:
                     text_ingrese_op_valida()
 
