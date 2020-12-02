@@ -11,7 +11,7 @@
 ## [] Ingresar pelicula
 ## [] Eliminar usuario
 ## [] Actualizar dato X de pelicula
-## [] Acualizar usuario
+## [] Actualizar usuario
 
 ## imagen
 
