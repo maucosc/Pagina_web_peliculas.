@@ -86,6 +86,17 @@ def text_usuario_creado():
     print("Usuario Creado exitosamente")
     print("---------------------------")
 
+def text_pelicula_creada():
+    print("-------------------------------")
+    print("Pelicula ingresada exitosamente")
+    print("-------------------------------")
+
+def text_dato_existente():
+    print("")
+    print("-----------------")
+    print("Dato ya Existente")
+    print("-----------------")
+
 
 def text_espacio():
     print("\n\n\n")

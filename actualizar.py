@@ -1,5 +1,5 @@
 from conexion import *
-from textos import text_menu_actualizar_usuario, text_regresar, text_ingrese_op_valida, modificacion_exitosa
+from textos import *
 
 
 def actualizar_usuario():
@@ -19,7 +19,7 @@ def actualizar_usuario():
 
             sql = "UPDATE cuenta SET email = '{}' WHERE email = '{}'".format(email_new, email)
             cursor.execute(sql)
-            modificacion_exitosa()
+            text_modificacion_exitosa()
 
         elif op == "b":
 
@@ -28,7 +28,7 @@ def actualizar_usuario():
 
             sql = "UPDATE cuenta SET nickname = '{}' WHERE nickname = '{}'".format(usuario_new, usuario)
             cursor.execute(sql)
-            modificacion_exitosa()
+            text_modificacion_exitosa()
 
         else:
 

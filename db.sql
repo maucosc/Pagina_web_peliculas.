@@ -163,12 +163,99 @@ BEGIN
 
 DELIMITER ;
 
+--Procedimiento almacenado PELICULA_SERVIDOR
+
+DELIMITER //
+
+CREATE PROCEDURE agregar_formato_pelicula(IN _id_formato_fk INT, IN _id_pelicula_fk INT)
+
+BEGIN
+    DECLARE existe_pelicula INT;
+    DECLARE existe_formato INT;
+    DECLARE id_formato INT;
+
+    SET existe_pelicula = (SELECT COUNT(*) FROM Pelicula WHERE nombre = _id_pelicula_fk);
+    SET existe_formato = (SELECT COUNT(*) FROM formato WHERE nombre = _id_formato_fk);
+
+    IF existe_formato = 0 THEN
+        IF existe_pelicula = 0 THEN
+        INSERT INTO pelicula_formato VALUES (NULL, _id_pelicula_fk);
+        END IF;
+
+        SET
+
+
+
+
+DELIMITER ;
+
 -- eliminar servidor
 
-DILIMITER //
+DELIMITER //
 
-CREATE PROCEDURE borrar
+CREATE PROCEDURE borrar_servidor(IN _servidor INT, IN _cuenta INT)
 
+BEGIN
+    DECLARE servidor_existe INT;
+    DECLARE cuenta_existe INT;
+
+    SET cuenta_existe = (SELECT COUNT(*) FROM cuenta WHERE id = _cuenta);
+    SET servidor_existe = (SELECT COUNT(*) FROM servidor WHERE id = _servidor);
+
+        IF cuenta_existe = 0 THEN --no existe cuenta
+            IF servidor_existe = 0 THEN
+                SELECT 'servidor inexistente' AS 'Mensaje servidor'
+                SELECT 'cuenta no encontrada' AS 'Mensaje Cuenta';
+
+                ELSE
+                DELETE FROM cuenta WHERE id = _cuenta;
+                SELECT 'ha sido borrado la cuenta' AS 'Mensaje Cuenta';
+
+                END IF;
+
+
+        ELSE
+        DELETE FROM servidor_existe WHERE id = _servidor;
+        SELECT 'servidor eliminado' AS 'Mensaje Servidor'
+    END//
+
+
+DELIMITER ;
+
+call borrar_servidor(6);
+
+DROP PROCEDURE borrar_servidor;
+
+
+--Procedimiento Crear servidor
+
+DELIMITER //
+
+CREATE PROCEDURE agregar_servidor(IN _id VARCHAR(50), IN _id_servidor int, IN _cuenta VARCHAR(50))
+BEGIN
+    DECLARE existe_servidor INT;
+    DECLARE existe_cuenta INT;
+    DECLARE id_cuenta INT;
+
+    SET existe_cuenta = (SELECT COUNT(*) FROM cuenta WHERE nombre = _cuenta);
+    SET existe_servidor = (SELECT COUNT(*) FROM servidor WHERE id = _id);
+
+    IF existe_cuenta = 1 THEN
+        SELECT 'cuenta existente' AS 'info';
+
+    ELSE
+        IF 1 = 0 THEN
+            INSERT INTO servidor VALUES(NULL, _servidor);
+            END IF;
+            SET id_cuenta = (SELECT id FROM cuenta WHERE nombre = _cuenta);
+            INSERT INTO servidor VALUES (_id,_servidor,_cuenta);
+    END IF;
+
+END //
+
+DELIMITER ;
+
+CALL agregar_servidor('marco',4);
 
 -- inner_join_Visualizar
 
