@@ -2,6 +2,7 @@ from textos import *
 from visualizar import *
 from actualizar import *
 
+
 def crear():
     while True:
         print("")
@@ -15,16 +16,16 @@ def crear():
         op = input("Opcion: ")
         op = op.strip().lower()
 
-        if op == "C":
+        if op == "c":
             print("")
             print("----------")
             print("Regresando")
             print("----------")
 
-        elif op == "A":
+        elif op == "a":
             pass
 
-        elif op == "B":
+        elif op == "b":
             pass
 
         else:
@@ -42,13 +43,13 @@ def visualizar():
 
         if op == "a" or op == "b" or op == "c":
 
-            if op == "C":
+            if op == "c":
                 text_regresar()
 
-            elif op == "A":
+            elif op == "a":
                 visualizar_pelicula()
 
-            elif op == "B":
+            elif op == "b":
                 visualizar_peliculas_disponibles()
             break
 
@@ -65,13 +66,13 @@ def actualizar():
         op = input("Opcion: ")
         op = op.strip().lower()
 
-        if op == "C":
+        if op == "c":
             text_regresar()
 
-        elif op == "A":
+        elif op == "a":
             actualizar_usuario()
 
-        elif op == "B":
+        elif op == "b":
             actualizar_pelicula()
 
         else:
@@ -101,13 +102,13 @@ def iniciar_sesion(nickname, passwd):
                     text_mensaje_despedida()
                     menu_sesion()
 
-                elif op == "A":
+                elif op == "a":
                     crear()
 
-                elif op == "B":
+                elif op == "b":
                     visualizar()
 
-                elif op == "C":
+                elif op == "c":
                     eliminar()
 
                 else:
@@ -152,8 +153,6 @@ def menu_sesion():
         elif op == 'b':
             crear_cuenta()
 
-        elif op == 'c':
-            text_ingrese_op_valida()
 
 
 menu_sesion()

@@ -16,7 +16,7 @@ def text_menu_visualizar_text():
     print("")
     print("A) Pelicula por nombre")
     print("B) Todas las peliculas")
-    print("C) S>alir")
+    print("C) Salir")
 
 
 def text_menu_actualizar():
