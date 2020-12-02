@@ -1,3 +1,4 @@
+from eliminar import *
 from insertar import *
 from textos import *
 from visualizar import *
@@ -13,13 +14,13 @@ def crear():
 
         if op == "d":
             text_regresar()
-            menu_sesion()
+            break
 
         elif op == "a":
             ingresar_pelicula()
 
         elif op == "b":
-            ingresar_servidor_pelicula()
+            ingresar_pelicula_servidor()
 
         elif op == "c":
             ingresar_formato_pelicula()
@@ -37,16 +38,17 @@ def visualizar():
         op = input("Opcion: ")
         op = op.strip().lower()
 
-        if op == "a" or op == "b" or op == "c":
+        if op == "a" or op == "b" or op == "c" or op == "d":
 
-            if op == "c":
+            if op == "d":
                 text_regresar()
                 menu_sesion()
-
             elif op == "a":
+                visualizar_usuario()
+            elif op == "b":
                 visualizar_pelicula()
 
-            elif op == "b":
+            elif op == "c":
                 visualizar_peliculas_disponibles()
             break
 
@@ -64,7 +66,7 @@ def actualizar():
 
         if op == "c":
             text_regresar()
-            menu_sesion()
+            break
 
         elif op == "a":
             actualizar_usuario()
@@ -78,7 +80,25 @@ def actualizar():
 
 
 def eliminar():
-    pass
+    while True:
+        text_menu_eliminar()
+
+        op = input("Opcion: ")
+        op = op.strip().lower()
+
+        if op == "c":
+            text_regresar()
+            break
+
+        elif op == "a":
+            eliminar_Usuario()
+
+        elif op == "b":
+            eliminar_servidor_cuenta()
+
+        else:
+            text_ingrese_op_valida()
+            eliminar()
 
 
 def iniciar_sesion(nickname, passwd):

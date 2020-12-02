@@ -1,4 +1,5 @@
 from conexion import *
+from textos import text_espacio
 
 
 def visualizar_pelicula():
@@ -6,17 +7,16 @@ def visualizar_pelicula():
     while True:
         nombre = input("Ingrese nombre de pelicula: ")
         cursor = db.cursor()
-        sql = "SELECT pelicula.id AS 'n°',"\
-              "pelicula.nombre,"\
-              "pelicula.resolucion,"\
-              "pelicula.idioma m,"\
-              "pelicula.tamano AS 'Tamaño',"\
-              "categoria.nombre AS 'Categoria'"\
-              "FROM "\
-              "categoria_pelicula"\
-              "INNER JOIN categoria ON categoria_pelicula.id_categoria_fk = categoria.id"\
-              "INNER JOIN pelicula ON categoria_pelicula.id_pelicula_fk = pelicula.id"\
-              "WHERE pelicula.nombre = '{}'".format(nombre).strip().lower()
+        sql = "SELECT pelicula.nombre,\
+                pelicula.resolucion,\
+                pelicula.idioma,\
+                pelicula.tamano,\
+                categoria.nombre AS 'Categoria', \
+                pelicula.sinopsis\
+                FROM categoria_pelicula\
+                LEFT JOIN categoria ON categoria_pelicula.id_categoria_fk = categoria.id\
+                RIGHT JOIN pelicula ON categoria_pelicula.id_pelicula_fk = pelicula.id\
+                WHERE pelicula.nombre LIKE '%{}%'".format(nombre).strip().lower()
         cursor.execute(sql)
         rs = cursor.fetchall()
 
@@ -26,25 +26,35 @@ def visualizar_pelicula():
             print("Pelicula inexistente")
             print("--------------------")
         else:
-            print(rs)
+            for x in rs:
+                print(x)
+        break
 
 
 def visualizar_peliculas_disponibles():
 
-    while True:
-        cursor = db.cursor()
-        sql = "SELECT pelicula.id AS 'n°',"\
-              "pelicula.nombre,"\
-              "pelicula.resolucion,"\
-              "pelicula.idioma,"\
-              "pelicula.tamano,"\
-              "categoria.nombre AS 'Categoria',"\
-              "FROM "\
-              "categoria_pelicula"\
-              "INNER JOIN categoria ON categoria_pelicula.id_categoria_fk = categoria.id"\
-              "INNER JOIN pelicula ON categoria_pelicula.id_pelicula_fk = pelicula.id"
-        cursor.execute(sql)
-        rs = cursor.fetchall()
+    cursor = db.cursor()
+    sql = "SELECT pelicula.nombre,\
+            pelicula.resolucion,\
+            pelicula.idioma,\
+            pelicula.tamano,\
+            categoria.nombre AS 'Categoria', \
+            pelicula.sinopsis\
+            FROM categoria_pelicula\
+            LEFT JOIN categoria ON categoria_pelicula.id_categoria_fk = categoria.id\
+            RIGHT JOIN pelicula ON categoria_pelicula.id_pelicula_fk = pelicula.id"
+    cursor.execute(sql)
+    rs = cursor.fetchall()
 
-        for x in rs:
-            print(x)
+    text_espacio()
+    for x in rs:
+        print(x)
+
+def visualizar_usuario():
+    cursor = db.cursor()
+    sql = "SELECT cuenta.nickname, cuenta.email FROM cuenta"
+    cursor.execute(sql)
+    rs = cursor.fetchall()
+    db.commit()
+    for x in rs:
+        print(x)

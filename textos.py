@@ -10,20 +10,31 @@ def text_menu_iniciar_sesion():
     print("E) Regresar a menu")
     print("-------------------")
 
-
 def text_menu_visualizar_text():
-    print("Visualizar Informacion")
     print("")
-    print("A) Pelicula por nombre")
-    print("B) Todas las peliculas")
-    print("C) Salir")
-
+    print("----------------------")
+    print("Visualizar Informacion")
+    print("----------------------")
+    print("A) Usuario")
+    print("B) Pelicula por nombre")
+    print("C) Todas las peliculas")
+    print("D) Salir")
 
 def text_menu_actualizar():
+    print("----------------------")
     print("Actualizar Informacion")
-    print("")
+    print("----------------------")
     print("A) Usuario")
     print("B) Pelicula")
+    print("C) Regresar")
+
+def text_menu_actualizar_pelicula():
+    print("")
+    print("---------------------------")
+    print("Actualizar datos de usuario")
+    print("---------------------------")
+    print("A) Nombre de pelicula")
+    print("B) Idioma de pelicula")
     print("C) Regresar")
 
 def text_menu_actualizar_usuario():
@@ -43,6 +54,25 @@ def text_menu_agregar():
     print("C) Formato")
     print("D) Salir")
 
+def text_menu_eliminar():
+    print("")
+    print("")
+    print("")
+    print("--------------------")
+    print("Eliminar Informacion")
+    print("--------------------")
+    print("A) Usuario")
+    print("B) servidor y cuenta relacionada")
+    print("C) Salir")
+
+def text_dato_eliminado():
+    print("")
+    print("")
+    print("")
+    print("----------------------")
+    print("Eliminacion completada")
+    print("----------------------")
+
 def text_mensaje_bienvenida():
     print("")
     print("")
@@ -51,24 +81,20 @@ def text_mensaje_bienvenida():
     print("Bienvenido")
     print("----------")
 
-
 def text_mensaje_despedida():
     print("----------")
     print("Adios")
     print("----------")
-
 
 def text_usuario_invalido():
     print("------------------------------")
     print("Usuario o Contraseña invalidos")
     print("------------------------------")
 
-
 def text_regresar():
     print("----------")
     print("Regresando")
     print("----------")
-
 
 def text_ingrese_op_valida():
     print("-------------------------")
@@ -79,7 +105,6 @@ def text_modificacion_exitosa():
     print("--------------------")
     print("Modificacion exitosa")
     print("--------------------")
-
 
 def text_usuario_creado():
     print("---------------------------")
@@ -96,7 +121,6 @@ def text_dato_existente():
     print("-----------------")
     print("Dato ya Existente")
     print("-----------------")
-
 
 def text_espacio():
     print("\n\n\n")

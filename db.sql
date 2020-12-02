@@ -257,6 +257,30 @@ DELIMITER ;
 
 CALL agregar_servidor('marco',4);
 
+
+--Eliminar cuenta usuario
+
+DELIMITER //
+
+CREATE PROCEDURE borrar_cuenta(IN _id_cuenta INT)
+
+BEGIN
+    DECLARE existe_cuenta INT;
+
+    SET existe_cuenta = (SELECT COUNT(*) FROM cuenta WHERE id = _id_cuenta);
+        IF existe_cuenta = 1 THEN
+            DELETE FROM cuenta WHERE id = _id_cuenta;
+            SELECT 'Eliminacion de cuenta exitosa' AS 'Mensaje'
+
+        ELSE
+            SELECT 'Cuenta no existente';
+        END IF;
+
+    END //
+
+DELIMITER ;
+
+
 -- inner_join_Visualizar
 
 SELECT pelicula.id AS 'N', 
@@ -267,9 +291,24 @@ SELECT pelicula.id AS 'N',
 	categoria.nombre AS 'Categoria'
 	FROM categoria_pelicula
 	INNER JOIN categoria ON categoria_pelicula.id_categoria_fk = categoria.id
-	INNER JOIN pelicula ON categoria_pelicula.id_pelicula_fk = pelicula.id
-	WHERE pelicula.nombre LIKE "%el%";
+	INNER JOIN pelicula ON categoria_pelicula.id_pelicula_fk = pelicula.id;
 
 -- Update_Usuario
 
 UPDATE cuenta SET nickname = "mauco" WHERE nickname = 'hola';
+
+
+
+
+
+SELECT 	pelicula.nombre,
+    	pelicula.resolucion,
+        pelicula.idioma,
+        pelicula.tamano,
+        categoria.nombre AS 'Categoria',
+        pelicula.sinopsis
+        FROM categoria_pelicula
+        INNER JOIN categoria ON categoria_pelicula.id_categoria_fk = categoria.id
+        INNER JOIN pelicula ON categoria_pelicula.id_pelicula_fk = pelicula.id
+		ORDER BY 
+        GROUP BY pelicula.nombre asc;

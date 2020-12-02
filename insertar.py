@@ -19,10 +19,3 @@ def ingresar_pelicula():
         cursor.execute(sql)
         db.commit()
         text_pelicula_creada()
-        break
-
-def ingresar_pelicula_servidor():
-    pass
-
-def ingresar_formato_pelicula():
-    pass
