@@ -20,3 +20,14 @@ def ingresar_pelicula():
         db.commit()
         text_pelicula_creada()
         break
+
+
+def crear_cuenta():
+    cursor = db.cursor()
+    nickname = input("Ingrese su nickname: ")
+    email = input("Ingrese su correo: ")
+    passwd = input("Ingrese su contraseña: ")
+    sql = "INSERT INTO cuenta (nickname,email,passwd) VALUES ('{}','{}',SHA2('{}',0))".format(nickname, email, passwd)
+    cursor.execute(sql)
+    db.commit()
+    text_usuario_creado()

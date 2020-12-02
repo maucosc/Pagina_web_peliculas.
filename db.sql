@@ -54,7 +54,8 @@ CREATE TABLE cuenta (
 
 INSERT INTO cuenta VALUES(NULL, 'mrT', 'marc.sc@outlook.es', SHA2('63568', 0)),
 						  (NULL, 'juan', 'juan@hotmail.com', SHA2('31231', 0)),
-						  (null,'hola', 'hola@gmail.com', SHA2('hola',0));
+						  (null,'hola', 'hola@gmail.com', SHA2('hola',0)),
+						  (null,'mauco', 'mauco@gmail.com', SHA2('mauco',0));
 						   
 CREATE TABLE servidor (
 	id INT AUTO_INCREMENT,
@@ -308,7 +309,5 @@ SELECT 	pelicula.nombre,
         categoria.nombre AS 'Categoria',
         pelicula.sinopsis
         FROM categoria_pelicula
-        INNER JOIN categoria ON categoria_pelicula.id_categoria_fk = categoria.id
-        INNER JOIN pelicula ON categoria_pelicula.id_pelicula_fk = pelicula.id
-		ORDER BY 
-        GROUP BY pelicula.nombre asc;
+        LEFT JOIN categoria ON categoria_pelicula.id_categoria_fk = categoria.id
+        RIGHT JOIN pelicula ON categoria_pelicula.id_pelicula_fk = pelicula.id;

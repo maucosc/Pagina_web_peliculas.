@@ -51,6 +51,7 @@ def visualizar_peliculas_disponibles():
         print(x)
 
 def visualizar_usuario():
+    text_espacio()
     cursor = db.cursor()
     sql = "SELECT cuenta.nickname, cuenta.email FROM cuenta"
     cursor.execute(sql)

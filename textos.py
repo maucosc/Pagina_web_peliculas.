@@ -47,10 +47,12 @@ def text_menu_actualizar_usuario():
 
 def text_menu_agregar():
     print("")
+    print("-------------------")
     print("Agregar Informacion")
-    print("")
+    print("-------------------")
     print("A) Pelicula")
-    print("B) Salir")
+    print("B) Usuario")
+    print("C) Salir")
 
 def text_menu_eliminar():
     print("")

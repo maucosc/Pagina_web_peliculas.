@@ -12,13 +12,15 @@ def crear():
         op = input("Opcion: ")
         op = op.strip().lower()
 
-        if op == "b":
+        if op == "c":
             text_regresar()
             break
 
         elif op == "a":
             ingresar_pelicula()
 
+        elif op == "b":
+            crear_cuenta()
         else:
             text_ingrese_op_valida()
             crear()
@@ -131,40 +133,29 @@ def iniciar_sesion(nickname, passwd):
             text_usuario_invalido()
             break
 
-
-def crear_cuenta():
-    cursor = db.cursor()
-    nickname = input("Ingrese su nickname: ")
-    email = input("Ingrese su correo: ")
-    passwd = input("Ingrese su contraseña: ")
-    sql = "INSERT INTO cuenta (nickname,email,passwd) VALUES ('{}','{}',SHA2('{}',0))".format(nickname, email, passwd)
-    cursor.execute(sql)
-    db.commit()
-    text_usuario_creado()
-
-
 def menu_sesion():
     text_mensaje_bienvenida()
 
     while True:
         print("")
         print("A) Iniciar Sesion")
-        print("B) Crear Cuenta")
-        print("C) Salir")
+        print("B) Salir")
         op = input("Ingrese opcion: ")
         op = op.strip().lower()
 
-        if op == 'c':
+        if op == 'b':
             text_mensaje_despedida()
             exit()
 
         elif op == 'a':
+            print("")
             nickname = input("Ingrese su nickname: ")
             passwd = input("Ingrese su contraseña: ")
             iniciar_sesion(nickname, passwd)
 
-        elif op == 'b':
-            crear_cuenta()
+        else:
+            text_ingrese_op_valida()
+            menu_sesion()
 
 
 
