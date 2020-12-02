@@ -84,7 +84,7 @@ def eliminar():
         op = input("Opcion: ")
         op = op.strip().lower()
 
-        if op == "c":
+        if op == "d":
             text_regresar()
             break
 
@@ -93,6 +93,9 @@ def eliminar():
 
         elif op == "b":
             eliminar_servidor_cuenta()
+
+        elif op == "c":
+            eliminar_pelicula_nombre()
 
         else:
             text_ingrese_op_valida()

@@ -64,7 +64,8 @@ def text_menu_eliminar():
     print("--------------------")
     print("A) Usuario")
     print("B) servidor y cuenta relacionada")
-    print("C) Salir")
+    print("C) Eliminar pelicula por nombre")
+    print("D) Salir")
 
 def text_dato_eliminado():
     print("")

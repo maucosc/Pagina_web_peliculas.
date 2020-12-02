@@ -26,6 +26,7 @@ def visualizar_pelicula():
             print("Pelicula inexistente")
             print("--------------------")
         else:
+            print("")
             for x in rs:
                 print(x)
         break

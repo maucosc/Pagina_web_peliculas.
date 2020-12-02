@@ -30,3 +30,16 @@ def eliminar_servidor_cuenta():
     cursor.execute(sql)
     db.commit()
     text_dato_eliminado()
+
+def eliminar_pelicula_nombre():
+    print("")
+    print("Eliminar Pelicula Por nombre")
+    print("")
+
+    nombre = input("Introdusca el nombre exacto de la pelicula: ")
+    cursor = db.cursor()
+    sql = "DELETE FROM pelicula WHERE nombre = '{}'".format(nombre)
+    cursor.execute(sql)
+    db.commit()
+    text_dato_eliminado()
+
