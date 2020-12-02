@@ -23,10 +23,10 @@ def eliminar_servidor_cuenta():
 
     nombre = input("Introduzca el nombre del servidor: ")
     cursor = db.cursor()
-    sql = "DELETE servidor, cuenta " \
-          "FROM servidor " \
-          "INNER JOIN cuenta ON servidor.id_cuenta_fk = cuenta.id" \
-          "WHERE servidor.nombre = '{}'".format(nombre).lower().strip()
+    sql = "DELETE servidor, cuenta  \
+          FROM servidor  \
+          INNER JOIN cuenta ON servidor.id_cuenta_fk = cuenta.id \
+          WHERE servidor.nombre = '{}'".format(nombre)
     cursor.execute(sql)
     db.commit()
     text_dato_eliminado()

@@ -1,4 +1,4 @@
-from conexion import  *
+from conexion import *
 from textos import *
 
 
@@ -19,3 +19,4 @@ def ingresar_pelicula():
         cursor.execute(sql)
         db.commit()
         text_pelicula_creada()
+        break

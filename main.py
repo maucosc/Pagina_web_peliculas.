@@ -12,18 +12,12 @@ def crear():
         op = input("Opcion: ")
         op = op.strip().lower()
 
-        if op == "d":
+        if op == "b":
             text_regresar()
             break
 
         elif op == "a":
             ingresar_pelicula()
-
-        elif op == "b":
-            ingresar_pelicula_servidor()
-
-        elif op == "c":
-            ingresar_formato_pelicula()
 
         else:
             text_ingrese_op_valida()
@@ -42,7 +36,7 @@ def visualizar():
 
             if op == "d":
                 text_regresar()
-                menu_sesion()
+                break
             elif op == "a":
                 visualizar_usuario()
             elif op == "b":
@@ -162,7 +156,7 @@ def menu_sesion():
 
         if op == 'c':
             text_mensaje_despedida()
-            break
+            exit()
 
         elif op == 'a':
             nickname = input("Ingrese su nickname: ")

@@ -50,9 +50,7 @@ def text_menu_agregar():
     print("Agregar Informacion")
     print("")
     print("A) Pelicula")
-    print("B) Servidor")
-    print("C) Formato")
-    print("D) Salir")
+    print("B) Salir")
 
 def text_menu_eliminar():
     print("")
