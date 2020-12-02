@@ -5,7 +5,6 @@ USE descargar_peliculas;
 CREATE TABLE categoria(
 	id INT AUTO_INCREMENT,
 	nombre VARCHAR (100),
-	
 	PRIMARY KEY (id),
 	UNIQUE (nombre)
 );
@@ -23,17 +22,15 @@ INSERT INTO categoria VALUES(NULL, 'Accion'),
 							(NULL, 'Series TV'),
 							(NULL, 'Triller');
 						
-
 CREATE TABLE formato(
 	id INT AUTO_INCREMENT,
-	nombre VARCHAR (100),
+	nombre VARCHAR (50),
 	descripcion TEXT,
-	
 	PRIMARY KEY (id),
 	UNIQUE (nombre)
 );
 
-INSERT INTO formato VALUES (NULL, 'SCR', 'Obtebido de un DVD o de Blu-ray DE USO promocional'),
+INSERT INTO formato VALUES(NULL, 'SCR', 'Obtebido de un DVD o de Blu-ray DE USO promocional'),
 						   (NULL, 'VHS-Screener', 'Lo mismo de un SCR, pero obtenida de una cinta VHS'),
 						   (NULL, 'TC(telecine)', 'Se obtiene por la transferencia del rollo analógico destinado a cines a un medio digital a través de una máquina destinada a este fin'),
 						   (NULL, 'WP(Workprint)', 'Son copias obtenidas de películas no terminadas.'),
@@ -49,26 +46,25 @@ INSERT INTO formato VALUES (NULL, 'SCR', 'Obtebido de un DVD o de Blu-ray DE USO
 
 CREATE TABLE cuenta (
 	id INT AUTO_INCREMENT,
-	nickname VARCHAR (50),
-	email VARCHAR (50),
-	passwd VARCHAR (10),
+	nickname VARCHAR(50) UNIQUE,
+	email VARCHAR(50) UNIQUE,
+	passwd VARCHAR(64),
 	PRIMARY KEY (id)
 );
 
-INSERT INTO cuenta VALUES (NULL, 'mrT', 'marc.sc@outlook.es', SHA2('63568', 0)),
+INSERT INTO cuenta VALUES(NULL, 'mrT', 'marc.sc@outlook.es', SHA2('63568', 0)),
 						  (NULL, 'juan', 'juan@hotmail.com', SHA2('31231', 0)),
 						  (null,'hola', 'hola@gmail.com', SHA2('hola',0));
-
 						   
 CREATE TABLE servidor (
 	id INT AUTO_INCREMENT,
-	nombre VARCHAR (100),
+	nombre VARCHAR(50) UNIQUE,
 	id_cuenta_fk INT,
 	
 	PRIMARY KEY (id)
 );
 
-INSERT INTO servidor VALUES (NULL, 'Usercloud', 1),
+INSERT INTO servidor VALUES(NULL, 'Usercloud', 1),
 						   (NULL, 'Openload', 3),
 						   (NULL, 'Uptobox', 2),
 						   (NULL, '1Fichier', 3),
@@ -80,17 +76,16 @@ INSERT INTO servidor VALUES (NULL, 'Usercloud', 1),
 
 CREATE TABLE pelicula (
 	id INT AUTO_INCREMENT,
-	nombre VARCHAR (100),
+	nombre VARCHAR (100)UNIQUE,
 	resolucion VARCHAR (15),
 	idioma VARCHAR (50),
 	tamano VARCHAR (10),
 	sinopsis TEXT,
 	
-	PRIMARY KEY (id),
-	UNIQUE (sinopsis)
+	PRIMARY KEY (id)
 );
 
-INSERT INTO pelicula VALUES (NULL, 'El jefe de la mafia', '1920x808', 'Español Latino', '3.75 GB', 'Biopic del famoso mafioso estadounidense John Gotti (1940-2002), jefe de la familia Gambino, una de las más importantes del crimen organizado en la Norteamérica del siglo XX.'),
+INSERT INTO pelicula VALUES(NULL, 'El jefe de la mafia', '1920x808', 'Español Latino', '3.75 GB', 'Biopic del famoso mafioso estadounidense John Gotti (1940-2002), jefe de la familia Gambino, una de las más importantes del crimen organizado en la Norteamérica del siglo XX.'),
 							(NULL, 'El legado', '1920x1080', 'Español Latino', '3.96 GB ', 'Perseguidos por un criminal vengativo (James Franco) y una banda de soldados sobrenaturales,​ un exconvicto recién liberado (Jack Reynor) y su hermano adolescente adoptado (Myles Truitt) se ven obligados a escapar con un arma de origen misterioso que es su única protección.'),
 							(NULL, 'Star Wars: Episodio VI - El Retorno del jedi', '1920x1080', 'Inglés AC', '4.71 GB', 'Para ir a Tatooine y liberar a Han Solo, Luke Skywalker y la princesa Leia deben infiltrarse en la peligrosa guarida de Jabba the Hutt, el gángster más temido de la galaxia. Una vez reunidos, el equipo recluta a tribus de Ewoks para combatir a las fuerzas imperiales en los bosques de la luna de Endor. Mientras tanto, el Emperador y Darth Vader conspiran para atraer a Luke al lado oscuro, pero el joven está decidido a reavivar el espíritu del Jedi en su padre. La guerra civil galáctica termina con un último enfrentamiento entre las fuerzas rebeldes unificadas y una segunda Estrella de la Muerte, indefensa e incompleta, en una batalla que decidirá el destino de la galaxia.'),
                             (NULL, 'Scarface', '1920x1080', 'Español', '2 GB', 'Un imigrande cubano de las carceles de fidel castro provoca un camino de destruccion en su ascenso en el mundo de las drogras de miami');
@@ -99,19 +94,17 @@ CREATE TABLE pelicula_servidor (
 	id INT AUTO_INCREMENT,
 	id_pelicula_fk INT,
 	id_servidor_fk INT,
+	url TEXT,
 	
 	PRIMARY KEY (id)
 );
 
-INSERT INTO pelicula_servidor VALUES (NULL, 3, 2),
-									 (NULL, 3, 5),
-									 (NULL, 3, 1),
-									 (NULL, 2, 5),
-									 (NULL, 2, 2),
-									 (NULL, 2, 1),
-									 (NULL, 1, 1),
-									 (NULL, 1, 2),
-									 (NULL, 1, 3);
+INSERT INTO pelicula_servidor VALUES(NULL, 3, 7, "http://paste.pelismegahd.pe/?v=52725"),
+									 (NULL, 3, 8, "http://paste.pelismegahd.pe/?v=52726"),
+									 (NULL, 2, 5, "http://paste.pelismegahd.pe/?v=53858"),
+									 (NULL, 2, 2, "http://paste.pelismegahd.pe/?v=53858"),
+									 (NULL, 1, 2, "http://paste.pelismegahd.pe/?v=53858"),
+									 (NULL, 1, 3, "http://paste.pelismegahd.pe/?v=53858");
 
 CREATE TABLE pelicula_formato (
 	id INT AUTO_INCREMENT,
@@ -121,7 +114,7 @@ CREATE TABLE pelicula_formato (
 	PRIMARY KEY (id)
 );
 
-INSERT INTO pelicula_formato VALUES (NULL, 1, 7),
+INSERT INTO pelicula_formato VALUES(NULL, 1, 7),
 									(NULL, 2, 7);
 
 
@@ -134,7 +127,7 @@ CREATE TABLE categoria_pelicula (
 );
 
 
-INSERT INTO categoria_pelicula VALUES (NULL, 2, 1),
+INSERT INTO categoria_pelicula VALUES(NULL, 2, 1),
 									  (NULL, 3, 2),
 									  (NULL, 1, 1),
 									  (NULL, 2, 2);
@@ -169,3 +162,9 @@ BEGIN
 
 
 DELIMITER ;
+
+-- eliminar servidor
+
+DILIMITER //
+
+CREATE PROCEDURE borrar
